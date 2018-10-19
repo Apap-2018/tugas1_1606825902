@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Tambah Pegawai</title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: datepicker" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: cloudflare" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar(nama='Tambah Pegawai')"></nav>
+	
+	<h3> Tambah Pegawai</h3>
+	<form th:action="@{/pegawai/add}" th:object="${pegawai}" method ="POST">
+		<input type ="hidden" value="1234" th:field="*{nip}">
+		<div class="form-group row">
+			<label for="input1" class="col-sm-2 col-form-label">Nama</label>
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="input1" th:field="*{nama}" placeholder="Nama">
+    		</div>
+  		</div>
+  		<div class="form-group row">
+    		<label for="input2" class="col-sm-2 col-form-label">Tempat Lahir</label>
+    		<div class="col-sm-5">
+      			<input type="text" class="form-control" id="input2" th:field="*{tempatLahir}" placeholder="Tempat Lahir">
+    		</div>
+  		</div>
+  		<div class="form-group row">
+    		<label for="input3" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+    		<div class="col-sm-5">
+      			<input type="date" class="form-control" id="input3" th:field="*{tanggalLahir}">
+    		</div>
+  		</div>
+  		<div class="form-group row">
+    		<label for="input4" class="col-sm-2 col-form-label">Tahun Masuk</label>
+    		<div class="col-sm-5">
+      			 <input class="date-own form-control" style="width: 300px;" type="text" id="input4" name="tahunMasuk">
+      			 <script type="text/javascript">
+	      			 $('.date-own').datepicker({
+	      				 minViewMode: 2,
+	      				 format: 'yyyy'
+	      				 });
+      			 </script>
+    		</div>
+  		</div>
+  		<div class="form-group row">
+    		<div class="col-sm-5">
+      			<div class="form-group">
+						<label for="pilihProvinsi">Provinsi</label> <select
+							class="form-control" id="pilihProvinsi">
+							<option value="" disabled selected>Pilih Provinsi</option>
+							<option th:each="provinsi: ${listProvinsi}"
+								th:text="${provinsi.getNama()}" th:value="${provinsi.getId()}"></option>
+						</select>
+					</div>
+				<script>
+					$('#pilihProvinsi').on('change', function() {
+						$("#pilihInstansi").html("<option disabled selected>Pilih Instansi</option>");
+						$.getJSON( "/instansi/get?provinsi="+this.value, function( data ) {
+							$.each(data, function(i, value) {
+					            $('#pilihInstansi').append($('<option>',{value:value.id,text:value.nama}));
+					        });
+						});
+					});
+				</script>
+    		</div>
+  		</div>
+  		<div class="form-group">
+
+			<label for="pilihInstansi">Instansi</label> <select
+				class="form-control" id="pilihInstansi" name="instansi" th:field="*{instansi}" >
+				<option value="" disabled selected>Pilih Instansi</option>
+			</select>
+		</div>
+		<div class="card bg-light mb-3" >
+  <div class="card-header">Jabatan</div>
+  <div class="card-body">
+		<div class="form-inline mb-2" th:each="jabatan,rowStat : *{jabatan}">
+		<div class="input-group mb-2">
+		<select
+				class="form-control" id="pilihJabatan"
+				th:field="*{jabatan[__${rowStat.index}__]}">
+				<option th:each="jabatanItem: ${jabatanList}"
+					th:text="${jabatanItem.getNama()}" th:value="${jabatanItem.id}"></option>
+			</select>
+			<div class="input-group-addon">
+			<button class="btn btn-danger" th:value="${rowStat.index}" type="submit" name="deleteRow">X</button>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="card-footer">
+    		<button class="btn btn-secondary"  type="submit" name="addRow">Add Jabatan</button>
+ 	 </div>
+ 	 
+		</div>
+		<button type="submit" name="pegawaiSubmit" class="btn btn-primary">Submit</button>
+	</form>
+</body>
+</html>

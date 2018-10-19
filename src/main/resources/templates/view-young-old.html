@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Detail Pegawai</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar(nama='View Pegawai')"></nav>
+		<br>
+		<h3> Data Pegawai Termuda</h3>
+		<hr>
+		<h5 th:text="'NIP: '+${pegawaimuda.nip}"></h5>
+		<h5 th:text="'Nama: '+${pegawaimuda.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: '+${pegawaimuda.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: '+${pegawaimuda.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: '+${pegawaimuda.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: '+${pegawaimuda.instansi.nama}+' - '+${pegawaimuda.instansi.provinsi.nama}"></h5>
+		<h5>Jabatan: </h5>
+		<hr>
+		<div th:each="Jabatan : ${jabatanmuda}">
+			<h5 th:text="${Jabatan.jabatan.nama}"></h5>
+		</div>
+		<hr>
+		<br>
+		<h3> Data Pegawai Tertua</h3>
+		<hr>
+		<h5 th:text="'NIP: '+${pegawaitua.nip}"></h5>
+		<h5 th:text="'Nama: '+${pegawaitua.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: '+${pegawaitua.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: '+${pegawaitua.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: '+${pegawaitua.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: '+${pegawaitua.instansi.nama}+' - '+${pegawaitua.instansi.provinsi.nama}"></h5>
+		<h5>Jabatan: </h5>
+		<hr>
+		<div th:each="Jabatan : ${jabatantua}">
+			<h5 th:text="${Jabatan.jabatan.nama}"></h5>
+		</div>
+		<hr>
+	</body>
+</html>

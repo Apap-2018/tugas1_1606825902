@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Update</title>
+	
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar(nama='Berhasil Update')"></nav>
+	<h2 th:text="${kata}+' Berhasil Diupdate'"> Data Berhasil Ditambahkan</h2>
+</body>
+</html>

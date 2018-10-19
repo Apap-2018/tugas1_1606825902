@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Detail Jabatan</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+		<nav th:replace="fragments/fragment :: navbar(nama='View Jabatan')"></nav>
+		<h3 th:text="'Detail Jabatan '+${jabatan.nama}"></h3>
+		<hr>
+		<h5 th:text="'Nama: '+${jabatan.nama}"></h5>
+		<h5 th:text="'Deskripsi: '+${jabatan.deskripsi}"></h5>
+		<h5 th:text="'Gaji Pokok: Rp. '+${#numbers.formatDecimal(jabatan.gajiPokok,3,0,'COMMA')}"></h5>
+		<a class="btn btn-primary" th:href="@{'/jabatan/ubah/' +${jabatan.id}}">Ubah</a>
+		<a class="btn btn-primary" th:href="@{'/jabatan/hapus/' +${jabatan.id}}">Hapus</a>
+	</body>
+</html>
