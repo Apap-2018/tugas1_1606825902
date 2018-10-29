@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Update Pegawai</title>
+<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+<object th:include="fragments/fragment :: cloudflare" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: navbar(nama='Update Pegawai')"></nav>
+	<div class="card bg-light mb-3" style="margin: 5% 5% 5% 5%;" >
+	<h3 th:text="'Ubah Data Pegawai - '+ ${pegawai.nama}" class="card-header"></h3>
+	<div class="card-body">
+	<form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
+	<input type="hidden" id="id" name="id" th:field="*{id}">
+		<div class="form-group">
+			<label for="namaInput">Nama</label> <input type="text"
+				class="form-control" id="namaInput" aria-describedby="namaHelp"
+				th:value="*{nama}" th:field="*{nama}"> <small
+				id="namaHelp" class="form-text text-muted"></small>
+		</div>
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label for="inputTL">Tempat Lahir</label> <input type="text"
+					class="form-control" placeholder="Masukkan Tempat Lahir"
+					id="inputTL" th:field="*{tempatLahir}">
+			</div>
+			<div class="form-group col-md-6">
+				<label for="inputBD">Tanggal Lahir</label> <input type="date"
+					class="form-control" id="inputBD" th:field="*{tanggalLahir}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="namaInput">Tahun Masuk</label> <input type="text"
+				class="form-control" id="namaInput" aria-describedby="namaHelp"
+				placeholder="Masukkan Tahun" th:field="*{tahunMasuk}"> <small
+				id="namaHelp" class="form-text text-muted">Tahun saat pegawai masuk instansi</small>
+		</div>
+
+<div class="card bg-light mb-3" >
+ <div class="card-header">Wilayah Kerja</div>
+  <div class="card-body">
+		<div class="form-group">
+			<label for="pilihProvinsi">Provinsi</label> <select
+				class="form-control" id="pilihProvinsi">
+				<option th:each="provinsi: ${listProvinsi}" th:selected="${provinsi.id==provinsiSelected.getId()}"
+					th:text="${provinsi.getNama()}" th:value="${provinsi.getId()}"></option>
+			</select>
+		</div>
+		<div class="form-group">
+
+			<label for="pilihInstansi">Instansi</label> <select
+				class="form-control" id="pilihInstansi" name="instansi" th:field="*{instansi}" >
+			</select>
+		</div>
+				</div>
+				</div>
+<div class="card bg-light mb-3" >
+  <div class="card-header">Jabatan</div>
+  <div class="card-body">
+		<div class="form-inline mb-2" th:each="jabatan,rowStat : *{jabatan}">
+		<div class="input-group mb-2">
+		<select
+				class="form-control" id="pilihJabatan"
+				th:field="*{jabatan[__${rowStat.index}__]}">
+				<option th:each="jabatanItem: ${listJabatan}"
+					th:text="${jabatanItem.nama}" th:value="${jabatanItem.id}" th:selected="${jabatanItem.id==pegawai.jabatan[__${rowStat.index}__].id}"></option>
+			</select>
+			<div class="input-group-addon">
+			<button class="btn btn-danger" th:value="${rowStat.index}" type="submit" name="delRowUpdate">X</button>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="card-footer">
+    		<button class="btn btn-secondary"  type="submit" name="newRowUpdate">Add Jabatan</button>
+ 	 </div>
+ 	 
+		</div>
+		    <button type="submit" class="btn btn-primary" name="submitUpdate">Submit</button>
+	</form>
+		</div>
+	</div>
+</body>
+<script>
+$(function() {
+	$.populateInstansi = function(){
+		$.getJSON( "/instansi/get?provinsi="+$('#pilihProvinsi option:selected').val(), function( data ) {
+			$.each(data, function(i, value) {
+				if (value.id==[[${pegawai.instansi.id}]]) {
+		            $('#pilihInstansi').append($('<option>',{value:value.id,text:value.nama,selected:"Selected"}));
+				}
+				else {
+		            $('#pilihInstansi').append($('<option>',{value:value.id,text:value.nama}));
+				}
+	        });
+		});
+		}
+	 $.populateInstansi();
+	 $('#pilihProvinsi').on('change', function() {
+			$("#pilihInstansi").html("<option disabled selected>Pilih Instansi</option>");
+			 $.populateInstansi();
+		});
+});
+</script>
+
+</html>

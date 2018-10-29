@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 public class Provinsi {
 	
 	@Id
-	@Size(max = 10)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

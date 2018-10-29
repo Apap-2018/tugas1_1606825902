@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="instansi")
 public class Instansi {
 	@Id
-	@Size(max = 20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	

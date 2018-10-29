@@ -1,0 +1,62 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato|Quicksand');
+
+p{
+	font-family: 'Lato', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+}
+.card-header-pink{
+	background-color:#2196F3;
+	color: white;
+    border-bottom:3px solid #2196F3;
+    font-family: 'Roboto', sans-serif;
+    padding:0px;
+    margin-top:1px;
+    margin-left:1px;
+    overflow:hidden;
+    text-align: center;
+    -webkit-transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-body{
+ margin:1em;
+ font-family: 'Lato', sans-serif;
+ font-family: 'Quicksand', sans-serif; 
+}
+.buttonLihat {
+  position: relative;
+  display: block;
+  width: 100px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #1c89ff;
+  border: solid 1px transparent;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+  
+}
+.buttonLihat:hover {
+    background-color: transparent;
+    border-color: black;
+    color: black;
+    transition: all .1s ease-in-out;
+  }
+
+
+#inputNip{
+	
+	position:relative;
+	font-size: 20px;
+	padding: 3px;
+	display: inline-block;
+	border-radius: 9999em;
+
+  }
+  
+#inputNip::placeholder{
+	color: #999999;
+}

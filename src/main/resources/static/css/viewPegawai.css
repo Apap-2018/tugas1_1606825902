@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato|Quicksand');
+.container{
+	font-family: 'Lato', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	position: absolute;
+	top: 100px;
+	left: 100px;
+}
+
+#profilePic{
+	position:absolute;
+	left:10%;
+}
+#part1{
+	position:absolute;
+	top:52%;
+	left:10px;
+	text-align:center;
+}
+
+.header1{
+	font-family: 'Roboto', sans-serif;
+	padding-left:20px;
+}
+.header2{
+	font-family: 'Roboto', sans-serif;
+	padding-left:20px;
+	font-size:18pt;
+}
+#part2{
+	position:absolute;
+	top:78%;
+	margin-left:10px;
+}
+.section1{
+	font-family: 'Roboto', sans-serif;
+	font-size:28pt;
+}
+
+.garis {
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 1px 0 0 0;
+          border-radius: 20px;
+        }
+.garis:before{
+          display: block;
+          content: "";
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 0 0 3px 0;
+          border-radius: 20px;
+        }
+        
+        
+ #part3{
+ 	margin-top:10px;
+ }
+ .section2{
+	font-family: 'Roboto', sans-serif;
+	font-size:28pt;
+ }
+ 
+ #buttonUbah{
+	  position: relative;
+	  display: block;
+	  width: 400px;
+	  height: 36px;
+	  border-radius: 18px;
+	  border: solid 1px transparent;
+	  color: #fff;
+	  font-size: 18px;
+	  font-weight: 300;
+	  cursor: pointer;
+	  transition: all .1s ease-in-out;
+}
+
+#button{
+	margin-top:20px;
+	position:absolute;
+	left:60%
+}
+#buttonUbah:hover {
+    background-color: transparent;
+    border-color: blue;
+    color: blue;
+    transition: all .1s ease-in-out;
+  }
+ 

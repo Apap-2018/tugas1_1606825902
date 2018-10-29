@@ -15,4 +15,5 @@ public interface JabatanService {
 	Integer sebaranPegawai(Jabatan Jabatan);
 	List<Jabatan_pegawai> findJabatanAll();
 	List<Jabatan_pegawai> findJabatan(Jabatan jabatan);
+	String getGajiJabatan(Jabatan jabatan);
 }

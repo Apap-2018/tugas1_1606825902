@@ -3,58 +3,48 @@
 
 <head>
 	<title>Tambah Pegawai</title>
-	
+	<link rel="stylesheet" th:href="@{/css/addPegawai.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
-	<object th:include="fragments/fragment :: datepicker" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: cloudflare" th:remove="tag"></object>
 </head>
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar(nama='Tambah Pegawai')"></nav>
-	
-	<h3> Tambah Pegawai</h3>
-	<form th:action="@{/pegawai/add}" th:object="${pegawai}" method ="POST">
+	<h3 class="judul"> Tambah Pegawai</h3>
+	<hr class="garis">
+	<form th:action="@{/pegawai/tambah}" th:object="${pegawai}" method ="POST">
 		<input type ="hidden" value="1234" th:field="*{nip}">
-		<div class="form-group row">
-			<label for="input1" class="col-sm-2 col-form-label">Nama</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="input1" th:field="*{nama}" placeholder="Nama">
-    		</div>
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label for="input1" class="label label-default">Nama *</label>
+				<input type="text" class="form-control" id="input1" th:field="*{nama}" placeholder="Nama Anda" required>
+	  		</div>
+	  		<div class="form-group col-md-4" id="tl">
+	    		<label for="input2" class="label label-default">Tempat Lahir *</label>
+	      		<input type="text" class="form-control" id="input2" th:field="*{tempatLahir}" placeholder="Tempat Lahir Anda" required >
+	  		</div>
+	  	</div>
+	  	<div class="form-row">
+	  		<div class="form-group col-md-4">
+	    		<label for="input3" class="label label-default">Tanggal Lahir *</label>
+	      		<input type="date" class="form-control" id="input3" th:field="*{tanggalLahir}">
+	  		</div>
+	  		<div class="form-group col-md-5" id="tm">
+	    		<label for="input4" class="label label-default">Tahun Masuk *</label>
+	      		<input class="form-control" style="width: 300px;" type="text" id="input4" th:field="*{tahunMasuk}" placeholder="Tahun Saat Kamu Masuk Lembaga Ini" required>
+	  		</div>
   		</div>
-  		<div class="form-group row">
-    		<label for="input2" class="col-sm-2 col-form-label">Tempat Lahir</label>
-    		<div class="col-sm-5">
-      			<input type="text" class="form-control" id="input2" th:field="*{tempatLahir}" placeholder="Tempat Lahir">
-    		</div>
-  		</div>
-  		<div class="form-group row">
-    		<label for="input3" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-    		<div class="col-sm-5">
-      			<input type="date" class="form-control" id="input3" th:field="*{tanggalLahir}">
-    		</div>
-  		</div>
-  		<div class="form-group row">
-    		<label for="input4" class="col-sm-2 col-form-label">Tahun Masuk</label>
-    		<div class="col-sm-5">
-      			 <input class="date-own form-control" style="width: 300px;" type="text" id="input4" name="tahunMasuk">
-      			 <script type="text/javascript">
-	      			 $('.date-own').datepicker({
-	      				 minViewMode: 2,
-	      				 format: 'yyyy'
-	      				 });
-      			 </script>
-    		</div>
-  		</div>
-  		<div class="form-group row">
+  		<div class="form-group">
     		<div class="col-sm-5">
       			<div class="form-group">
-						<label for="pilihProvinsi">Provinsi</label> <select
-							class="form-control" id="pilihProvinsi">
+						<label for="pilihProvinsi" class="label label-default">Provinsi *</label> <select
+							class="form-control" id="pilihProvinsi" required>
 							<option value="" disabled selected>Pilih Provinsi</option>
 							<option th:each="provinsi: ${listProvinsi}"
-								th:text="${provinsi.getNama()}" th:value="${provinsi.getId()}"></option>
+								th:text="${provinsi.getNama()}" th:value="${provinsi.getId()}" ></option>
 						</select>
 					</div>
 				<script>
@@ -70,35 +60,47 @@
     		</div>
   		</div>
   		<div class="form-group">
-
-			<label for="pilihInstansi">Instansi</label> <select
-				class="form-control" id="pilihInstansi" name="instansi" th:field="*{instansi}" >
-				<option value="" disabled selected>Pilih Instansi</option>
-			</select>
-		</div>
-		<div class="card bg-light mb-3" >
-  <div class="card-header">Jabatan</div>
-  <div class="card-body">
-		<div class="form-inline mb-2" th:each="jabatan,rowStat : *{jabatan}">
-		<div class="input-group mb-2">
-		<select
-				class="form-control" id="pilihJabatan"
-				th:field="*{jabatan[__${rowStat.index}__]}">
-				<option th:each="jabatanItem: ${jabatanList}"
-					th:text="${jabatanItem.getNama()}" th:value="${jabatanItem.id}"></option>
-			</select>
-			<div class="input-group-addon">
-			<button class="btn btn-danger" th:value="${rowStat.index}" type="submit" name="deleteRow">X</button>
+  			<div class="col-sm-5">
+				<label for="pilihInstansi" class="label label-default">Instansi *</label> <select
+					class="form-control" id="pilihInstansi" th:field="*{instansi}" required>
+					<option value="" disabled selected>Pilih Instansi</option>
+				</select>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-header-blue">
+						<h3> Pilih Jabatan Pegawai</h3>
+					</div>
+					<div class="card-body">
+						<div class="form-inline mb-2" th:each="jabatan,rowStat : *{jabatan}">
+							<div class="input-group mb-2">
+								<select class="form-control" id="pilihJabatan" th:field="*{jabatan[__${rowStat.index}__]}">
+									<option th:each="jabatanItem: ${listJabatan}" th:text="${jabatanItem.getNama()}" th:value="${jabatanItem.id}"></option>
+								</select>
+								<div class="input-group-addon">
+									<button class="btn btn-danger" id="buttonHapus" th:value="${rowStat.index}" type="submit" name="deleteRow"><i class="fa fa-trash"> Hapus</i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer">
+			    		<button class="btn btn-primary"  id="buttonTambah" type="submit" name="addRow"><i class="fa fa-plus"> Add Jabatan</i></button>
+			 	 	</div>
+				</div>
+			</div>
 		</div>
-		</div>
-		<div class="card-footer">
-    		<button class="btn btn-secondary"  type="submit" name="addRow">Add Jabatan</button>
- 	 </div>
- 	 
-		</div>
-		<button type="submit" name="pegawaiSubmit" class="btn btn-primary">Submit</button>
+		<button type="submit" name="pegawaiSubmit" class="buttonSimpan"><i class="fa fa-check"> Simpan</i></button>
+		<button type="submit" class="buttonBatal" onclick="confirmCancel()"><i class="fa fa-close"> Batal</i></button>
+		<script>
+		function confirmCancel(){
+			if(confirm("Anda yakin membatalkannya?")){
+				window.location.replace("/")
+			}else{
+				
+			}
+		}</script>
 	</form>
 </body>
 </html>

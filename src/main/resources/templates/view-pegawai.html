@@ -2,26 +2,110 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Detail Pegawai</title>
+		<link rel="stylesheet" th:href="@{/css/viewPegawai.css}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar(nama='View Pegawai')"></nav>
-		<h3 th:text="'LIHAT DATA PEGAWAI - '+${pegawai.nip}"></h3>
-		<hr>
-		<h5 th:text="'NIP: '+${pegawai.nip}"></h5>
-		<h5 th:text="'Nama: '+${pegawai.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: '+${pegawai.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: '+${pegawai.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: '+${pegawai.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: '+${pegawai.instansi.nama}+' - '+${pegawai.instansi.provinsi.nama}"></h5>
-		<h5>Jabatan: </h5>
-		<hr>
-		<div th:each="Jabatan : ${jabatan}">
-			<h5 th:text="${Jabatan.jabatan.nama}"></h5>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<img src="/images/profile.png" id="profilePic">
+					</div>
+					<div class="row" id="part1">
+						<div class="col-sm">
+							<h1 class="header1" th:text="${pegawai.nama}"></h1>
+							<h3 class="header2" th:text="${pegawai.nip}"></h3>
+						</div>
+					</div>
+					<div class="row" id="part2">
+						<div class="col-sm">
+							<div th:each="Jabatan : ${jabatan}">
+								<h5 th:text="${Jabatan.nama}"></h5>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-sm">
+							<h3 class="section1">Data Diri Pegawai</h3>
+							<hr class="garis">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Nama</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.nama}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>NIP</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.nip}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Tempat Tanggal Lahir</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.tempatLahir} +', ' +${pegawai.tanggalLahir}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Tahun Masuk</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.tahunMasuk}"></h5>
+						</div>
+					</div>
+					<div class="row" id="part3">
+						<div class="col-sm">
+							<h3 class="section2">Data Pekerjaan Pegawai</h3>
+							<hr class="garis">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Instansi</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.instansi.nama}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Wilayah</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${pegawai.instansi.provinsi.nama}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Gaji</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${gaji}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="button">
+				<form th:action="@{/pegawai/ubah}" method="GET">
+					<input type="hidden" name="nip" th:value="${pegawai.nip}"></input>
+					<button type="submit" class="btn btn-primary" id="buttonUbah"><i class="fa fa-edit"> Ubah</i></button>
+				</form>
+			</div>
 		</div>
-		<hr>
-		<h5 th:text="'Gaji: Rp '+${gaji}"></h5>
-		<a class="btn btn-primary" href="/">Ubah</a>
 	</body>
 </html>

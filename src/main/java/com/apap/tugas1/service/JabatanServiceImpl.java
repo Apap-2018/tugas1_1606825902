@@ -1,5 +1,7 @@
 package com.apap.tugas1.service;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +81,22 @@ public class JabatanServiceImpl implements JabatanService {
 	public List<Jabatan_pegawai> findJabatan(Jabatan jabatan) {
 		// TODO Auto-generated method stub
 		return jabatan_pegawaiDB.findByJabatan(jabatan);
+	}
+
+	@Override
+	public String getGajiJabatan(Jabatan jabatan) {
+		// TODO Auto-generated method stub
+		double gaji = jabatan.getGajiPokok();
+		DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+		DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+		
+		formatRp.setCurrencySymbol("Rp. ");
+		formatRp.setMonetaryDecimalSeparator('.');
+		formatRp.setGroupingSeparator('.');
+		
+		kursIndonesia.setDecimalFormatSymbols(formatRp);
+		return kursIndonesia.format(gaji);
+		
 	}
 
 }

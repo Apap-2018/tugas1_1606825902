@@ -21,11 +21,4 @@ public class ProvinsiServiceImpl implements ProvinsiService {
 		// TODO Auto-generated method stub
 		return provinsiDB.findAll() ;
 	}
-
-	@Override
-	public Provinsi getProvinsiById(Long id) {
-		// TODO Auto-generated method stub
-		return provinsiDB.getOne(id);
-	}
-
 }

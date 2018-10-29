@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato|Quicksand');
+
+
+.container{
+	font-family: 'Lato', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	position: absolute;
+	top: 150px;
+	left: 150px;
+}
+
+#header{
+	font-family: 'Roboto', sans-serif;
+}
+
+#ringkasan{
+	padding-top:15px;
+}
+.garis {
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 1px 0 0 0;
+          border-radius: 20px;
+        }
+.garis:before{
+          display: block;
+          content: "";
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 0 0 3px 0;
+          border-radius: 20px;
+        }
+#button{
+	padding-top:30px;
+	position: absolute;
+	right:200px;
+}
+
+#buttonUbah{
+	  position: relative;
+	  display: block;
+	  width: 100px;
+	  height: 36px;
+	  border-radius: 18px;
+	  border: solid 1px transparent;
+	  color: #fff;
+	  font-size: 18px;
+	  font-weight: 300;
+	  cursor: pointer;
+	  transition: all .1s ease-in-out;
+}
+
+#buttonHapus{
+	  position: relative;
+	  background-color:#e9806e;
+	  display: block;
+	  width: 100px;
+	  height: 36px;
+	  border-radius: 18px;
+	  border: solid 1px transparent;
+	  color: #fff;
+	  font-size: 18px;
+	  font-weight: 300;
+	  cursor: pointer;
+	  transition: all .1s ease-in-out;
+	  margin-left:10px;
+}
+
+#buttonHapus:hover {
+    background-color: transparent;
+    border-color: #e9806e;
+    color: #e9806e;
+    transition: all .1s ease-in-out;
+  }
+  
+  
+  #buttonUbah:hover {
+    background-color: transparent;
+    border-color: blue;
+    color: blue;
+    transition: all .1s ease-in-out;
+  }

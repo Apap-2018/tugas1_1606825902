@@ -2,20 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Delete</title>
-		
+		<link rel="stylesheet" th:href="@{/css/deletePage.css}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar(nama='Delete Jabatan')"></nav>
 		<div th:if="${kondisi == false}">
-			<div class="alert alert-danger" role="alert">
-			  Tidak Bisa Menghapus jabatan, karena ada pegawai
+			<div class=container>
+				<div class="failed">
+				<i class="fa fa-times-circle" id="gambar"></i>
+				<p class="fail">Tidak Dapat Menghapus Jabatan. Penyebab: Terdapat Pegawai yang Menjabat Jabatan Tersebut!!</p>
+				</div>
 			</div>
-			<a class="btn btn-primary" href="/">Kembali</a>
+			<a class="btn btn-primary" id="buttonGagal" th:href="@{'~/jabatan/view?id=' +${id}}"><i class="fa fa-mail-reply"> Kembali</i></a>
 		</div>
 		<div th:unless="${kondisi == false}">
-			<h3> Jabatan berhasil dihapus</h3>
+		<div class ="container">
+		<div class="check_mark">
+			<div class="sa-icon sa-success animate">
+				<span class="sa-line sa-tip animateSuccessTip"></span>
+		    	<span class="sa-line sa-long animateSuccessLong"></span>
+		    	<div class="sa-placeholder"></div>
+		    	<div class="sa-fix"></div>
+		  	</div>
 		</div>
+		<h3 class="fourth-text"> Jabatan berhasil dihapus</h3>
+		<a class="btn btn-primary" id="buttonSukses" th:href="@{/}"><i class="fa fa-mail-reply"> Kembali</i></a>
+	</div>
+	</div>
 	</body>
 </html>

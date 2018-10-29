@@ -47,12 +47,13 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/view", method=RequestMethod.GET)
 	private String viewJabatan(@RequestParam(value="id") Long id, Model model) {
 		Jabatan jabatan = jabatanService.getJabatanById(id);
+		model.addAttribute("gaji", jabatanService.getGajiJabatan(jabatan));
 		model.addAttribute("jabatan", jabatan);
 		return "view-jabatan";
 	}
 	
-	@RequestMapping(value = "/jabatan/ubah/{id}", method=RequestMethod.GET)
-	private String ubahJabatan(@PathVariable(value="id") Long id, Model model) {
+	@RequestMapping(value = "/jabatan/ubah", method=RequestMethod.GET)
+	private String ubahJabatan(@RequestParam(value="id") Long id, Model model) {
 		List<Integer> gaji = new ArrayList<Integer>();
 		for (int awal=500000; awal<=75000000; awal+=1000000) {
 			gaji.add(awal);
@@ -62,6 +63,7 @@ public class JabatanController {
 		Jabatan jabatan = jabatanService.getJabatanById(id);
 		model.addAttribute("jabatanLama", jabatan);
 		model.addAttribute("listGaji", gaji);
+		model.addAttribute("gaji", jabatanService.getGajiJabatan(jabatan));
 		return "ubah-jabatan";
 	}
 	
@@ -77,6 +79,7 @@ public class JabatanController {
 	public String deletePilot(@PathVariable(value="id") Long id, Model model) {
 		boolean hapus = jabatanService.deleteJabatan(id);
 		model.addAttribute("kondisi", hapus);
+		model.addAttribute("id", id);
 		return "deletePage";
 	}
 	

@@ -2,14 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Add</title>
-	
+	<title>Sukses Tambah</title>
+	<link rel="stylesheet" th:href="@{/css/berhasilTambah.css}">
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar(nama='Berhasil Tambah')"></nav>
-	<h2 th:text="${kata}+' Berhasil Ditambahkan'"> Data Berhasil Ditambahkan</h2>
+	<div class ="container">
+		<div class="check_mark">
+			<div class="sa-icon sa-success animate">
+				<span class="sa-line sa-tip animateSuccessTip"></span>
+		    	<span class="sa-line sa-long animateSuccessLong"></span>
+		    	<div class="sa-placeholder"></div>
+		    	<div class="sa-fix"></div>
+		  	</div>
+		</div>
+		<h2 th:text="${kata}+' Berhasil Ditambahkan'" class="fourth-text"> Data Berhasil Ditambahkan</h2>	
+	</div>
 </body>
 </html>

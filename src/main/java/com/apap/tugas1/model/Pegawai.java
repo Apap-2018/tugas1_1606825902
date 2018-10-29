@@ -1,8 +1,9 @@
 package com.apap.tugas1.model;
 
 import java.sql.Date;
+import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,7 +29,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Pegawai {
 
 	@Id
-	@Size(max = 20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
@@ -59,6 +61,24 @@ public class Pegawai {
 	@OnDelete(action=OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	private Instansi instansi;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST, 
+					CascadeType.MERGE})
+	@JoinTable(name = "jabatan_pegawai",
+	joinColumns = {@JoinColumn(name = "id_pegawai")},
+	inverseJoinColumns = {@JoinColumn(name = "id_jabatan")})
+	private List<Jabatan> jabatan;
+
+	public List<Jabatan> getJabatan() {
+		return jabatan;
+	}
+
+	public void setJabatan(List<Jabatan> jabatan) {
+		this.jabatan = jabatan;
+	}
 
 	public Long getId() {
 		return id;

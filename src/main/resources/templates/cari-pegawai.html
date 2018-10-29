@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Detail Jabatan</title>
+		<title>Cari Pegawai</title>
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
-		<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet">
-		<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+		<object th:include="fragments/fragment :: jquery" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: jquery_datatable" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js_datatable" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: twitter" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: css_datatable" th:remove="tag"></object>
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar(nama='Cari Pegawai')"></nav>
@@ -22,10 +22,10 @@
 					</select>
 			</div>
 			<div class="card-body">
-				<label for="idProvinsi"> Instansi</label>
+				<label for="idInstansi"> Instansi</label>
 					<select id="idInstansi" name="idInstansi">
 						<option th:value="0" label ="Pilih Instansi" />
-						<option th:each="i : ${listInstansi}" th:value="${i.id}" th:text="${i.nama}" />
+						<option th:each="i : ${listInstansi}" th:value="${i.id}" th:text="${i.nama}+' - '+${i.provinsi.nama}" />
 					</select>
 			</div>
 			<div class="card-body">
@@ -59,9 +59,11 @@
                 <td th:text="${pegawai.tanggalLahir}" /></td>
                 <td th:text="${pegawai.tahunMasuk}" /></td>
                 <td th:text="${pegawai.instansi.nama}" /></td>
-                <td th:each="Jabatan : ${dataJabatan.get(pegawai)}">
-					<p th:text="${Jabatan.jabatan.nama}"></p>
-				</td>
+				<td><ul>
+                    <li th:each="jabatan : ${pegawai.jabatan}">
+                        <span th:text="${jabatan.nama}"></span>
+                    </li>
+                </ul></td>
             </tr>
         </tbody>
       </table>

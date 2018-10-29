@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato|Quicksand');
+
+.garis {
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 1px 0 0 0;
+          border-radius: 20px;
+        }
+.garis:before{
+          display: block;
+          content: "";
+          border-style: solid;
+          border-color: #8c8b8b;
+          border-width: 0 0 3px 0;
+          border-radius: 20px;
+        }
+        
+.form-group{
+	padding-left:10px;
+}
+
+
+#input1,#input2,#gajiPokok{
+		width: 100%;
+		border: 0;
+		border-radius:0;
+		border-bottom: 1px solid black;
+		padding: 5px 0;
+		font-size: 18px;
+		font-weight: 300;
+		outline: none;
+  }
+
+#input1:focus {
+			border-bottom: 2px solid red;
+		}
+		
+#input2:focus {
+			border-bottom: 2px solid red;
+		}  
+		
+#input1, #input2, #gajiPokok::placeholder{
+	color: #999999;
+	padding: 10px;
+}
+
+.judul{
+	font-family: 'Roboto', sans-serif;
+	text-align:center;
+}
+.label-default{
+	padding: 10px;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	font-size:16pt;
+}
+
+.help{
+	padding: 10px;
+	font-family: 'Lato', sans-serif;
+	font-family: 'Quicksand', sans-serif;
+	font-size:10pt;
+}
+ .buttonSimpan{
+ 	margin-top:10px;
+ 	background-color: #4CAF50;
+	margin-left:15px;
+	position: relative;
+	width: 100px;
+	height: 36px;
+	border-radius: 18px;
+	border: solid 1px transparent;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all .1s ease-in-out;
+ }
+ 
+.buttonSimpan:hover {
+    background-color: transparent;
+    border-color:  #4CAF50;
+    color:  #4CAF50;
+    transition: all .1s ease-in-out;
+  }
+ #buttonBatal{
+ 	background-color:#e9806e;
+	margin-left:10x;
+	position: relative;
+	width: 100px;
+	height: 36px;
+	border-radius: 18px;
+	border: solid 1px transparent;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 300;
+	cursor: pointer;
+	transition: all .1s ease-in-out; 
+ }
+ 
+#buttonBatal:hover {
+    background-color: transparent;
+    border-color:  #e9806e;
+    color:  #e9806e;
+    transition: all .1s ease-in-out;
+  }

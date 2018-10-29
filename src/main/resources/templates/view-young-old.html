@@ -10,32 +10,31 @@
 		<br>
 		<h3> Data Pegawai Termuda</h3>
 		<hr>
-		<h5 th:text="'NIP: '+${pegawaimuda.nip}"></h5>
-		<h5 th:text="'Nama: '+${pegawaimuda.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: '+${pegawaimuda.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: '+${pegawaimuda.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: '+${pegawaimuda.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: '+${pegawaimuda.instansi.nama}+' - '+${pegawaimuda.instansi.provinsi.nama}"></h5>
+		<h5 th:text="'NIP: '+${PegawaiTermuda.nip}"></h5>
+		<h5 th:text="'Nama: '+${PegawaiTermuda.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: '+${PegawaiTermuda.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: '+${PegawaiTermuda.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: '+${PegawaiTermuda.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: '+${PegawaiTermuda.instansi.nama}+' - '+${PegawaiTermuda.instansi.provinsi.nama}"></h5>
 		<h5>Jabatan: </h5>
 		<hr>
-		<div th:each="Jabatan : ${jabatanmuda}">
-			<h5 th:text="${Jabatan.jabatan.nama}"></h5>
-		</div>
-		<hr>
+		<ul><li th:each="jabatan : ${PegawaiTermuda.jabatan}">
+			<span th:text="${jabatan.nama}"></span>
+			</li></ul>
 		<br>
 		<h3> Data Pegawai Tertua</h3>
 		<hr>
-		<h5 th:text="'NIP: '+${pegawaitua.nip}"></h5>
-		<h5 th:text="'Nama: '+${pegawaitua.nama}"></h5>
-		<h5 th:text="'Tempat Lahir: '+${pegawaitua.tempatLahir}"></h5>
-		<h5 th:text="'Tanggal Lahir: '+${pegawaitua.tanggalLahir}"></h5>
-		<h5 th:text="'Tahun Masuk: '+${pegawaitua.tahunMasuk}"></h5>
-		<h5 th:text="'Nama Instansi: '+${pegawaitua.instansi.nama}+' - '+${pegawaitua.instansi.provinsi.nama}"></h5>
+		<h5 th:text="'NIP: '+${PegawaiTertua.nip}"></h5>
+		<h5 th:text="'Nama: '+${PegawaiTertua.nama}"></h5>
+		<h5 th:text="'Tempat Lahir: '+${PegawaiTertua.tempatLahir}"></h5>
+		<h5 th:text="'Tanggal Lahir: '+${PegawaiTertua.tanggalLahir}"></h5>
+		<h5 th:text="'Tahun Masuk: '+${PegawaiTertua.tahunMasuk}"></h5>
+		<h5 th:text="'Nama Instansi: '+${PegawaiTertua.instansi.nama}+' - '+${PegawaiTertua.instansi.provinsi.nama}"></h5>
 		<h5>Jabatan: </h5>
 		<hr>
-		<div th:each="Jabatan : ${jabatantua}">
-			<h5 th:text="${Jabatan.jabatan.nama}"></h5>
-		</div>
+		<ul><li th:each="jabatan : ${PegawaiTertua.jabatan}">
+			<span th:text="${jabatan.nama}"></span>
+			</li></ul>
 		<hr>
 	</body>
 </html>

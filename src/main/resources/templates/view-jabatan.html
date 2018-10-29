@@ -2,17 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<title>Detail Jabatan</title>
+		<link rel="stylesheet" th:href="@{/css/viewJabatan.css}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
 		<nav th:replace="fragments/fragment :: navbar(nama='View Jabatan')"></nav>
-		<h3 th:text="'Detail Jabatan '+${jabatan.nama}"></h3>
-		<hr>
-		<h5 th:text="'Nama: '+${jabatan.nama}"></h5>
-		<h5 th:text="'Deskripsi: '+${jabatan.deskripsi}"></h5>
-		<h5 th:text="'Gaji Pokok: Rp. '+${#numbers.formatDecimal(jabatan.gajiPokok,3,0,'COMMA')}"></h5>
-		<a class="btn btn-primary" th:href="@{'/jabatan/ubah/' +${jabatan.id}}">Ubah</a>
-		<a class="btn btn-primary" th:href="@{'/jabatan/hapus/' +${jabatan.id}}">Hapus</a>
+		<div class="container">
+			<div class="row">
+				<div class ="col-sm" id="header">
+					<h1 th:text="${jabatan.nama}"></h1>
+				</div>
+				<div class="col-sm" id="ringkasan">
+					<h3> Ringkasan</h3>
+					<hr class="garis">
+					<div class="row">
+						<div class="col-sm">
+							<h5>Nama</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${jabatan.nama}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Deskripsi</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${jabatan.deskripsi}"></h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<h5>Gaji Pokok</h5>
+						</div>
+						<div class="col-sm">
+							<h5 th:text="${gaji}"></h5>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id="button">
+				<form th:action="@{/jabatan/ubah}" method="GET">
+					<input type="hidden" name="id" th:value="${jabatan.id}"></input>
+					<button type="submit" class="btn btn-primary" id="buttonUbah"><i class="fa fa-edit"> Ubah</i></button>
+					</form>
+					<a class="btn btn-danger" id ="buttonHapus" th:href="@{'/jabatan/hapus/' +${jabatan.id}}"onclick="confirmCancel('${jabatan.id}')"><i class="fa fa-trash"> Hapus</i></a>
+					<script>
+					function confirmCancel(){
+						if(alert("Anda akan menghapus sebuah jabatan")){
+							
+						}else{
+							
+						}
+					}</script>
+			</div>
+		</div>
 	</body>
 </html>

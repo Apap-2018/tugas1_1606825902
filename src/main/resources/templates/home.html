@@ -3,7 +3,7 @@
 
 <head>
 	<title>Home</title>
-	
+	<link rel="stylesheet" th:href="@{/css/home.css}">
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
@@ -11,11 +11,11 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar(nama='SIPEG')"></nav>
 	<div class="container-fluid">
-	<h2> Hello !</h2>
+	<hr>
 	<div class="row">
 		<div class="col-md-6">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header-pink">
 					<h1>Sistem Informasi Kepegawaian</h1>
 					<p> Selamat datang di Sistem Informasi Kepegawaian</p>
 				</div>
@@ -23,9 +23,9 @@
 						<div class="card-body">
 							<h3 class="card-text">Lihat Data Pegawai berdasarkan NIP</h3>
 							<label for="NIP"> Masukan Nomor Induk Pegawai</label>
-							<input type="text" name="NIP" class="form-control" />
+							<input type="text" name="NIP" id = "inputNip" class="form-control" placeholder="Masukan NIP Anda" />
 							<p></p>
-							<button type="submit" class="btn btn-primary">Lihat</button>
+							<button type="submit" class="buttonLihat">Lihat</button>
 						</div>
 					</form>
 					<form th:action="@{/jabatan/view}" method="GET">
@@ -33,19 +33,22 @@
 							<h3 class="card-text">Lihat Detail Jabatan</h3>
 							<label for="id"> Pilih Jabatan</label>
 								<select id="id" name="id">
+									<option disabled selected>Pilih Jabatan
 				    				<option th:each="i : ${listJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i==1}" />
 								</select>
-							<button type="submit" class="btn btn-primary">Lihat</button>
+							<button type="submit" class="buttonLihat">Lihat</button>
 						</div>
 					</form>
 					<form th:action="@{/pegawai/termuda-tertua}" method="GET">
 						<div class="card-body">
 							<h3 class="card-text">Lihat Pegawai Termuda dan Tertua</h3>
-							<label for="id_instansi"> Pilih instansi</label>
+							<label for="id_instansi"> Pilih Instansi Pegawai</label>
 								<select id="idInstansi" name="idInstansi">
+									<option disabled selected> Pilih Instansi
 				    				<option th:each="i : ${listInstansi}" th:value="${i.id}" th:text="${i.nama} +' - '+${i.provinsi.nama}" th:selected="${i==1}" />
 								</select>
-							<button type="submit" class="btn btn-primary">Lihat</button>
+								<p></p>
+							<button type="submit" class="buttonLihat">Lihat</button>
 						</div>
 					</form>
 			</div>
